@@ -1,5 +1,5 @@
-name: 'post-to-slack'
-description: 'posts to slack'
+name: 'post-to-npm'
+description: 'publishes to npm via lerna and notifies on slack'
 runs:
     using: 'node12'
     main: 'dist/index.js'

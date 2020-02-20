@@ -7,6 +7,11 @@ export type LernaPackage = {
     location: string
 }
 
+export type PublishResponse = {
+    success: boolean,
+    error?: string
+}
+
 export const getChangedPackages = ():LernaPackage[] => {
     const changes = JSON.parse(
         spawnSync('npm', [
@@ -19,4 +24,21 @@ export const getChangedPackages = ():LernaPackage[] => {
         ]).stdout.toString(),
     );
     return changes instanceof Object ? [changes] : changes;
+}
+
+export const publishChangedPackages = (): PublishResponse => {
+    const publish = spawnSync('npm', [
+        'run',
+        '--silent',
+        '--',
+        'lerna',
+        'publish',
+        '--yes'
+    ]);
+
+    if(publish.stderr && publish.stderr.toString().length > 0){
+        return { success: false, error: publish.stderr }
+    }
+
+    return { success: true }
 }

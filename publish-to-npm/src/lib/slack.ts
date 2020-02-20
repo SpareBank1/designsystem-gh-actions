@@ -1,9 +1,6 @@
 import { spawnSync } from 'child_process';
 import { LernaPackage } from './lerna';
 
-
-/* Types */
-
 export type SlackMessage = { 
     blocks: SlackBlock[] 
 }
@@ -18,9 +15,6 @@ export type SlackBlockContent = {
     text: string
 }
 
-
-/* Internal functions */
-
 const createBlock = (blockType: string, text?: string): SlackBlock => ({
     type: blockType,
         ...(blockType !== 'divider' && {
@@ -31,8 +25,6 @@ const createBlock = (blockType: string, text?: string): SlackBlock => ({
         }
     )}
 );
-
-/* Exposed functions */
 
 export const createErrorMessage = (errorMessage: string, errorDetails: string): SlackMessage => (
     {
