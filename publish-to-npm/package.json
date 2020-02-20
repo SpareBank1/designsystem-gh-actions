@@ -1,0 +1,19 @@
+{
+  "name": "publish-to-npm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ncc build ./src/index.ts -m",
+    "dev": "ncc build ./src/index.ts -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^13.7.4",
+    "@zeit/ncc": "^0.21.1",
+    "typescript": "^3.7.5"
+  }
+}
