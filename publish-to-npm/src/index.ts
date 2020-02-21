@@ -20,32 +20,16 @@ switch(action){
     case 'slack-error':
         let errorMessage = core.getInput('error_message');
         let errorDetails = core.getInput('error_details');
-        createErrorMessage(errorMessage, errorDetails);
+        postSlackMessage(createErrorMessage(errorMessage, errorDetails))
         break;
+
+    case 'slack-success':
+        let successMessage = core.getInput('success_message');
+        let packages = core.getInput('changed_packages');
+        postSlackMessage(createChangelogMessage(JSON.parse(packages)));
 
     default:
         console.log('unknown param');
         break;
 }
 
-// const packages = getChangedPackages();
-
-// if(packages && packages.length > 0){
-    
-//     const publish = publishChangedPackages();
-
-//     if(publish.success){
-//         postSlackMessage(
-//             createChangelogMessage(packages)
-//             // @to-do: merge 
-//         );
-//     } else {
-//         postSlackMessage(
-//             createErrorMessage(
-//                 `:boom: An error occured during publishing to NPM.`,
-//                 publish.error,
-//             )
-//         );
-//     }
-
-// }
