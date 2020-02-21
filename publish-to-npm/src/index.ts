@@ -27,6 +27,7 @@ switch(action){
         let successMessage = core.getInput('success_message');
         let packages = core.getInput('changed_packages');
         postSlackMessage(createChangelogMessage(JSON.parse(packages)));
+        break;
 
     default:
         console.log('unknown param');
