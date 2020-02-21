@@ -1,5 +1,14 @@
 name: 'post-to-npm'
 description: 'publishes to npm via lerna and notifies on slack'
+outputs:
+  publish_status:
+    description: 'Publish status object'
+  changed:
+    description: 'Lerna changed info'
+inputs:
+  publish_status:
+    description: 'Input from previous'
+    required: false
 runs:
     using: 'node12'
     main: 'dist/index.js'
