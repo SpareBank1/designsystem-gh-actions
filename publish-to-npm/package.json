@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "ncc build ./src/index.ts -m",
+    "build:debug": "ncc build ./src/index.ts",
     "dev": "ncc build ./src/index.ts -w"
   },
   "keywords": [],

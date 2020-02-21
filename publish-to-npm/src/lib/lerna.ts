@@ -9,7 +9,7 @@ export type LernaPackage = {
 
 export type PublishResponse = {
     success: boolean,
-    error?: string
+    error: string
 }
 
 export const getChangedPackages = ():LernaPackage[] => {
@@ -40,5 +40,5 @@ export const publishChangedPackages = (): PublishResponse => {
         return { success: false, error: publish.stderr }
     }
 
-    return { success: true }
+    return { success: true, error: ''}
 }
