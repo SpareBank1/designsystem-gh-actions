@@ -6,11 +6,16 @@ const action = core.getInput('action', { required: true});
 
 switch(action){
     case 'lerna-changed':
-        console.log('lerna changed');
+        core.setOutput('changed', JSON.stringify(getChangedPackages()))
         break;
 
     case 'lerna-publish':
-        console.log('run publish action');
+        core.setOutput('publish_status', JSON.stringify(publishChangedPackages()))
+        break;
+
+    case 'slack-error':
+        let pubStatus = core.getInput('publish_status')
+        console.log(pubStatus);
         break;
 
     default:
