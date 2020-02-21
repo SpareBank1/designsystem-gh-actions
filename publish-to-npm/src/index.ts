@@ -13,7 +13,7 @@ switch(action){
 
     case 'lerna-publish':
         const publish = publishChangedPackages();
-        core.setOutput('publish_failed', `${publish.success}`)
+        core.setOutput('publish_failed', `${publish.failed}`)
         core.setOutput('publish_error_log', publish.error);
         break;
 

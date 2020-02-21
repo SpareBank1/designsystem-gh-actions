@@ -426,9 +426,9 @@ const publishChangedPackages = () => {
         '--yes'
     ]);
     if (publish.stderr && publish.stderr.toString().length > 0) {
-        return { success: false, error: publish.stderr.toString() };
+        return { failed: true, error: publish.stderr.toString() };
     }
-    return { success: true, error: '' };
+    return { failed: false, error: '' };
 };
 
 // EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
@@ -447,7 +447,7 @@ switch (action) {
         break;
     case 'lerna-publish':
         const publish = publishChangedPackages();
-        Object(core.setOutput)('publish_failed', `${publish.success}`);
+        Object(core.setOutput)('publish_failed', `${publish.failed}`);
         Object(core.setOutput)('publish_error_log', publish.error);
         break;
     case 'slack-error':

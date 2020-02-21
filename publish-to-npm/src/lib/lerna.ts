@@ -8,7 +8,7 @@ export type LernaPackage = {
 }
 
 export type PublishResponse = {
-    success: boolean,
+    failed: boolean,
     error: string
 }
 
@@ -37,8 +37,8 @@ export const publishChangedPackages = (): PublishResponse => {
     ]);
 
     if(publish.stderr && publish.stderr.toString().length > 0){
-        return { success: false, error: publish.stderr.toString() }
+        return { failed: true, error: publish.stderr.toString() }
     }
 
-    return { success: true, error: ''}
+    return { failed: false, error: ''}
 }
