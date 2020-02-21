@@ -37,7 +37,7 @@ export const publishChangedPackages = (): PublishResponse => {
     ]);
 
     if(publish.stderr && publish.stderr.toString().length > 0){
-        return { success: false, error: publish.stderr }
+        return { success: false, error: publish.stderr.toString() }
     }
 
     return { success: true, error: ''}
