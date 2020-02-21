@@ -6,16 +6,21 @@ const action = core.getInput('action', { required: true});
 
 switch(action){
     case 'lerna-changed':
-        core.setOutput('changed', JSON.stringify(getChangedPackages()))
+        const changedPackages = getChangedPackages();
+        core.setOutput('changed_packages', JSON.stringify(changedPackages));
+        core.setOutput('has_changes', changedPackages.length > 0 ? 'true': 'false');
         break;
 
     case 'lerna-publish':
-        core.setOutput('publish_status', JSON.stringify(publishChangedPackages()))
+        const publish = publishChangedPackages();
+        core.setOutput('publish_failed', `${publish.success}`)
+        core.setOutput('publish_error_log', publish.error);
         break;
 
     case 'slack-error':
-        let pubStatus = core.getInput('publish_status')
-        console.log(pubStatus);
+        let errorMessage = core.getInput('error_message');
+        let errorDetails = core.getInput('error_details');
+        createErrorMessage(errorMessage, errorDetails);
         break;
 
     default:

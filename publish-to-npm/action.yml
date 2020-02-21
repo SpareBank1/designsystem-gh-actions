@@ -1,10 +1,22 @@
 name: 'post-to-npm'
 description: 'publishes to npm via lerna and notifies on slack'
 outputs:
-  publish_status:
-    description: 'Publish status object'
-  changed:
-    description: 'Lerna changed info'
+
+  # Lerna Changed
+  changed_packages:
+    description: 'A stringified JSON array of LernaPackage (type in lib/lerna.ts)'
+  
+  has_changes:
+    description: 'String anwering either true or false based on count of packages from lerna change command'
+  
+
+  # Lerna Publish
+  publish_failed:
+    description: 'String anwering either true or false about publish status'
+
+  publish_error_log:
+    description: 'String containing error outputs from lerna command'
+    
 inputs:
   publish_status:
     description: 'Input from previous'
