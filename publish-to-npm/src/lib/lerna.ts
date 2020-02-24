@@ -33,7 +33,8 @@ export const publishChangedPackages = (): PublishResponse => {
         '--',
         'lerna',
         'publish',
-        '--yes'
+        '--yes',
+        `--registry=https://registry.npmjs.org/:_authToken=${process.env.NPM_TOKEN}`
     ]);
 
     if(publish.stderr && publish.stderr.toString().length > 0){
