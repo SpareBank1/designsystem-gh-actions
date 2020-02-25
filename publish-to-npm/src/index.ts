@@ -8,7 +8,7 @@ switch(action){
     case 'lerna-changed':
         const changedPackages = getChangedPackages();
         core.setOutput('changed_packages', JSON.stringify(changedPackages));
-        core.setOutput('has_changes', changedPackages.length > 0 ? 'true': 'false');
+        core.setOutput('has_changes', (changedPackages && changedPackages.length > 0) ? 'true': 'false');
         break;
 
     case 'lerna-publish':

@@ -13,17 +13,17 @@ export type PublishResponse = {
 }
 
 export const getChangedPackages = ():LernaPackage[] => {
-    const changes = JSON.parse(
-        spawnSync('npm', [
-            'run',
-            '--silent',
-            '--',
-            'lerna',
-            'changed',
-            '--ndjson',
-        ]).stdout.toString(),
-    );
-    return changes instanceof Object ? [changes] : changes;
+
+    const lernaOutput = spawnSync('npm', [
+        'run',
+        '--silent',
+        '--',
+        'lerna',
+        'changed',
+        '--json',
+    ]).stdout.toString();
+
+    return lernaOutput.length > 0 ? JSON.parse(lernaOutput) : null;
 }
 
 export const publishChangedPackages = (): PublishResponse => {
